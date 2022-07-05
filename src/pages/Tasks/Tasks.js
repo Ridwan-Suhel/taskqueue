@@ -14,7 +14,7 @@ const Tasks = () => {
               <InformationCircleIcon className="h-5 w-5 text-blue-500 mt-1" />
               <div className="">
                 <h3 className="text-lg font-bold leading-5">Tasks</h3>
-                <p>Malcolm Lockyer</p>
+                <p>Click on square button to...</p>
               </div>
             </div>
           </div>
@@ -32,12 +32,7 @@ const Tasks = () => {
               </div>
 
               <h2 className="text-lg">
-                Descriptin Lorem ipsum dolor sit amet consectetur Lorem ipsum
-                dolor sit amet consectetur adipisicing elit. Animi, deserunt
-                quisquam! Culpa magni ullam consectetur officiis magnam dolorem
-                suscipit blanditiis ad commodi illo asperiores obcaecati
-                excepturi, eligendi ea, ratione quia amet ipsa dolor veniam est
-                recusandae porro cumque modi. Ex.
+                Descriptin Lorem ipsum dolor sit amet consectetur
               </h2>
             </div>
             {/* right side  */}
