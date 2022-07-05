@@ -1,4 +1,4 @@
-import { ClipboardListIcon } from "@heroicons/react/solid";
+import { ClipboardListIcon, DocumentAddIcon } from "@heroicons/react/solid";
 import { HomeIcon } from "@heroicons/react/outline";
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
@@ -31,6 +31,15 @@ const AsideNav = () => {
           <li className="flex items-center gap-2">
             <ClipboardListIcon className="w-6 h-6" />
             <span>Tasks</span>
+          </li>
+        </NavLink>
+        <NavLink
+          to="/addtasks"
+          className="block transition  hover:text-white hover:bg-slate-800 py-2 pl-4 rounded"
+        >
+          <li className="flex items-center gap-2">
+            <DocumentAddIcon className="w-6 h-6" />
+            <span>Add Tasks</span>
           </li>
         </NavLink>
       </ul>

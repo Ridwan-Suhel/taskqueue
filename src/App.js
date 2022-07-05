@@ -5,6 +5,7 @@ import Tasks from "./pages/Tasks/Tasks";
 import { Routes, Route } from "react-router-dom";
 import AsideNav from "./components/AsideNav/AsideNav";
 import DemoHeader from "./components/DemoHeader/DemoHeader";
+import AddTasks from "./pages/AddTasks/AddTasks";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="/home" element={<Home />}></Route>
             <Route path="/tasks" element={<Tasks />}></Route>
+            <Route path="/addtasks" element={<AddTasks />}></Route>
           </Routes>
         </div>
       </div>
