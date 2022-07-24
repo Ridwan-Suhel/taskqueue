@@ -1,7 +1,7 @@
 import React from "react";
 import DemoHeader from "../../components/DemoHeader/DemoHeader";
 import { useForm } from "react-hook-form";
-
+import { DocumentAddIcon, PlusIcon, PlusSmIcon } from "@heroicons/react/solid";
 const AddTasks = () => {
   const {
     register,
@@ -65,12 +65,24 @@ const AddTasks = () => {
                 {errors.description && <p>Description is required</p>}
               </div>
 
-              <div className="form-control">
-                <input
-                  className="border-slate-500 w-[150px] text-slate-900 cursor-pointer border px-3 py-2"
-                  type="submit"
-                  value="CREATE"
-                />
+              <div className="flex justify-end gap-5">
+                <div className="form-control">
+                  <input
+                    className="font-medium transition-all hover:bg-rose-600 hover:text-white border-slate-500 w-[150px] text-slate-900 cursor-pointer border px-3 py-2"
+                    type="submit"
+                    value="CANCEL"
+                  />
+                </div>
+                <div className="form-control">
+                  <button
+                    className="group font-medium flex items-center justify-center transition-all hover:bg-blue-50 hover:text-black border-blue-500 w-[150px] text-blue-700 cursor-pointer border px-3 py-2"
+                    type="submit"
+                  >
+                    {/* <PlusSmIcon className="w-5 h-5 text-blue-700" />  */}
+                    <PlusIcon className="w-5 h-5 text-blue-700 mr-1 group-hover:text-black" />{" "}
+                    CREATE
+                  </button>
+                </div>
               </div>
             </form>
           </div>
