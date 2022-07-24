@@ -1,20 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import DemoHeader from "../../components/DemoHeader/DemoHeader";
 import { useForm } from "react-hook-form";
 import { DocumentAddIcon, PlusIcon, PlusSmIcon } from "@heroicons/react/solid";
+import DatePick from "./DatePick";
 const AddTasks = () => {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const today =
+    selectedDate.getDate() +
+    "-" +
+    (selectedDate.getMonth() + 1) +
+    "-" +
+    selectedDate.getFullYear();
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    console.log(today);
+
+    reset();
+  };
   return (
     <div>
       <DemoHeader />
       <div className="px-4">
-        <div class="wrapper mt-10">
+        <div className="wrapper mt-10">
           <h2>Add Task</h2>
           <div className="">
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -47,13 +62,21 @@ const AddTasks = () => {
               </div>
               {/* separate row  */}
 
-              <div className="form-control mb-2">
-                <input
-                  className="border-slate-500 w-full border px-3 py-2"
-                  placeholder="Project Title"
-                  {...register("title", { required: true })}
-                />
-                {errors.title && <p>Title is required</p>}
+              <div className="flex gap-2 items-center mb-2">
+                <div className="form-control w-full">
+                  <input
+                    className="border-slate-500 w-full border px-3 py-2"
+                    placeholder="Project Title"
+                    {...register("title", { required: true })}
+                  />
+                  {errors.title && <p>Title is required</p>}
+                </div>
+                <div className="form-control w-full">
+                  <DatePick
+                    selectedDate={selectedDate}
+                    setSelectedDate={setSelectedDate}
+                  />
+                </div>
               </div>
 
               <div className="form-control mb-2">
@@ -67,18 +90,19 @@ const AddTasks = () => {
 
               <div className="flex justify-end gap-5">
                 <div className="form-control">
-                  <input
+                  <button
+                    onClick={() => reset()}
                     className="font-medium transition-all hover:bg-rose-600 hover:text-white border-slate-500 w-[150px] text-slate-900 cursor-pointer border px-3 py-2"
-                    type="submit"
-                    value="CANCEL"
-                  />
+                    type="button"
+                  >
+                    CANCEL
+                  </button>
                 </div>
                 <div className="form-control">
                   <button
                     className="group font-medium flex items-center justify-center transition-all hover:bg-blue-50 hover:text-black border-blue-500 w-[150px] text-blue-700 cursor-pointer border px-3 py-2"
                     type="submit"
                   >
-                    {/* <PlusSmIcon className="w-5 h-5 text-blue-700" />  */}
                     <PlusIcon className="w-5 h-5 text-blue-700 mr-1 group-hover:text-black" />{" "}
                     CREATE
                   </button>
