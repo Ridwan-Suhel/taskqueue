@@ -1,0 +1,51 @@
+[
+  {
+    "image": "https://i.ibb.co/9nCKt4z/chair-1.png",
+    "price": 120,
+    "name": "Staci Chair",
+    "model": "Office Chair 2201-Av",
+    "description": "Laboris consectetur et esse cillum deserunt non sint minim dolor cupidatat aute. Deserunt nostrud duis aliqua nulla officia reprehenderit magna quis consectetur tempor ea minim. Cupidatat nulla officia ex labore anim culpa id ad reprehenderit labore. Deserunt commodo aute do nostrud nulla Lorem labore excepteur minim anim anim pariatur. Occaecat aute mollit veniam incididunt eu ex culpa nulla"
+  },
+  {
+    "image": "https://i.ibb.co/dm1HgYs/red-chair.png",
+    "price": 170,
+    "name": "Vanity Chair red",
+    "model": "MKV hair 01-cv",
+    "description": "Lorem ipsum dollor sit emmet dolor cupidatat aute. Deserunt nostrud duis aliqua nulla officia reprehenderit magna quis consectetur tempor ea minim. Cupidatat nulla officia ex labore anim culpa id ad reprehenderit labore. Deserunt commodo aute do nostrud nulla Lorem labore excepteur minim anim anim pariatur. Occaecat aute mollit veniam incididunt eu ex culpa nulla"
+  },
+  {
+    "image": "https://i.ibb.co/tPBH5Gk/noise-reducer-headp.png",
+    "price": 50,
+    "name": "Noise Reducer Headphone",
+    "model": "Office headphone 40nv",
+    "description": "Deserunt nostrud duis aliqua nulla officia reprehenderit magna quis consectetur tempor ea minim. Cupidatat nulla officia ex labore anim culpa id ad reprehenderit labore. Deserunt commodo aute do nostrud nulla Lorem labore excepteur minim anim anim pariatur. Occaecat aute mollit veniam incididunt eu ex culpa nulla"
+  },
+  {
+    "image": "https://i.ibb.co/jfDrHhW/speaker.png",
+    "price": 30,
+    "name": "Base Speaker",
+    "model": "Speaker 70MAH",
+    "description": "Laboris consectetur et esse cillum deserunt non aliqua nulla officia reprehenderit magna quis consectetur tempor ea minim. Cupidatat nulla officia ex labore anim culpa id ad reprehenderit labore. Deserunt commodo aute do nostrud nulla Lorem labore excepteur minim anim anim pariatur. Occaecat aute mollit veniam incididunt eu ex culpa nulla"
+  },
+  {
+    "image": "https://i.ibb.co/3rKZTZW/pen-mug.png",
+    "price": 20,
+    "name": "Table staionary mug",
+    "model": "BULU 043",
+    "description": "Officia reprehenderit magna quis consectetur tempor ea minim. Cupidatat nulla officia ex labore anim culpa id ad reprehenderit labore. Deserunt commodo aute do nostrud nulla Lorem labore excepteur minim anim anim pariatur. Occaecat aute mollit veniam incididunt eu ex culpa nulla"
+  },
+  {
+    "image": "https://i.ibb.co/vx80MXB/book.png",
+    "price": 40,
+    "name": "Corporate Book",
+    "model": "Holand Maclngo",
+    "description": "Lorem ipsum dollor sit emmet onsectetur tempor ea minim. Cupidatat nulla officia ex labore anim culpa id ad reprehenderit labore. Deserunt commodo aute do nostrud nulla Lorem labore excepteur minim anim anim pariatur. Occaecat aute mollit veniam incididunt eu ex culpa nulla"
+  },
+  {
+    "image": "https://i.ibb.co/Bqt3Zf5/usb.png",
+    "price": 10,
+    "name": "Rmani Usb",
+    "model": "PTO usb 40/A2c",
+    "description": "Cupidatat nulla officia ex labore anim culpa id ad reprehenderit labore. Deserunt commodo aute do nostrud nulla Lorem labore excepteur minim anim anim pariatur. Occaecat aute mollit veniam incididunt eu ex culpa nulla"
+  }
+]
