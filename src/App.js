@@ -7,6 +7,7 @@ import AsideNav from "./components/AsideNav/AsideNav";
 import DemoHeader from "./components/DemoHeader/DemoHeader";
 import AddTasks from "./pages/AddTasks/AddTasks";
 import Products from "./pages/Products/Products";
+import ProductDetails from "./pages/Products/ProductDetails";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/tasks" element={<Tasks />}></Route>
             <Route path="/addtasks" element={<AddTasks />}></Route>
             <Route path="/products" element={<Products />}></Route>
+            <Route path="/products:id" element={<ProductDetails />}></Route>
           </Routes>
         </div>
       </div>

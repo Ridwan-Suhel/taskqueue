@@ -1,17 +1,9 @@
 import React from "react";
 import {
   ShieldExclamationIcon,
-  ShoppingBagIcon,
   ShoppingCartIcon,
 } from "@heroicons/react/outline";
 import { HeartIcon } from "@heroicons/react/solid";
-import chair from "../../images/chair-1.png";
-import book from "../../images/book.png";
-import headphone1 from "../../images/noise-reducer-headp.png";
-import penMug from "../../images/pen-mug.png";
-import redChair from "../../images/red-chair.png";
-import speaker from "../../images/speaker.png";
-import usb from "../../images/usb.png";
 import "./Products.css";
 
 const SingleProducts = ({ item }) => {
