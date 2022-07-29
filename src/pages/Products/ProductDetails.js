@@ -62,7 +62,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      <div className="bg-black py-2 mb-3">
+      <div className="bg-slate-900 py-2 mb-3">
         <p className="text-center font-light text-lg text-white">
           Get 5% off on Entire order with digital payment
         </p>

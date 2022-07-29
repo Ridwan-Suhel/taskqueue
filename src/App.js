@@ -1,10 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Home from "./pages/Home/Home";
 import Tasks from "./pages/Tasks/Tasks";
 import { Routes, Route } from "react-router-dom";
 import AsideNav from "./components/AsideNav/AsideNav";
-import DemoHeader from "./components/DemoHeader/DemoHeader";
 import AddTasks from "./pages/AddTasks/AddTasks";
 import Products from "./pages/Products/Products";
 import ProductDetails from "./pages/Products/ProductDetails";
