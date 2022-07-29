@@ -1,0 +1,8 @@
+.buy-btn:hover {
+  background-color: rgb(76 29 149);
+  transition: all 0.3s ease-in-out;
+}
+.buy-btn:hover > .btn-icon {
+  background-color: rgb(76 29 149);
+  transition: all 0.3s;
+}

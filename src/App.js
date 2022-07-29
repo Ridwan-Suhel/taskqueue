@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import AsideNav from "./components/AsideNav/AsideNav";
 import DemoHeader from "./components/DemoHeader/DemoHeader";
 import AddTasks from "./pages/AddTasks/AddTasks";
+import Products from "./pages/Products/Products";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/home" element={<Home />}></Route>
             <Route path="/tasks" element={<Tasks />}></Route>
             <Route path="/addtasks" element={<AddTasks />}></Route>
+            <Route path="/products" element={<Products />}></Route>
           </Routes>
         </div>
       </div>
