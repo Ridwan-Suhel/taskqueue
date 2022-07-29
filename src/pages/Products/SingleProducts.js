@@ -8,8 +8,12 @@ import "./Products.css";
 import { useNavigate } from "react-router-dom";
 
 const SingleProducts = ({ item }) => {
-  const { name, price, model, image, _id } = item;
   const navigate = useNavigate();
+  const { name, price, model, image, _id } = item;
+
+  const handleClick = (id) => {
+    navigate(`/products/${id}`);
+  };
   return (
     <div className="bg-white overflow-hidden group single-col border rounded-lg px-6 py-4 cursor-pointer relative">
       <div className="flex justify-between items-center">
@@ -36,7 +40,7 @@ const SingleProducts = ({ item }) => {
           <div className="flex items-center justify-between ">
             <h2 className="text-base">Price: ${price}</h2>
             <button
-              onClick={() => navigate(`/products/${_id}`)}
+              onClick={() => handleClick(_id)}
               className="buy-btn relative flex text-sm items-center px-3 py-1 border-2 border-white rounded-lg text-white"
             >
               <span className="btn-icon z-10 bg-black absolute translate-y-[-50%] top-[50%] left-[-20px] border-2 p-2 rounded-full">

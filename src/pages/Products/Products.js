@@ -3,6 +3,7 @@ import SingleProducts from "./SingleProducts";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import ShoppingBag from "../../components/Shared/ShoppingBag";
 
 const Products = () => {
   const [productData, setProductData] = useState([]);
@@ -32,11 +33,16 @@ const Products = () => {
 
   return (
     <main className="px-4 pt-4 bg-slate-50">
-      <div className="title">
-        <h2 className="text-2xl">Chose your best product</h2>
-        <p className="text-base">
-          Get all products from one destination for your daily basis work.
-        </p>
+      <div className="flex justify-between">
+        <div className="title">
+          <h2 className="text-2xl">Chose your best product</h2>
+          <p className="text-base">
+            Get all products from one destination for your daily basis work.
+          </p>
+        </div>
+        <div className="site-top">
+          <ShoppingBag />
+        </div>
       </div>
 
       <div className="product-wrapper grid lg:grid-cols-3 2xl:grid-cols-4 gap-2 pt-12">
