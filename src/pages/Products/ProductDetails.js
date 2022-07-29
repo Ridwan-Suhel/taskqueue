@@ -1,5 +1,7 @@
 import { ArrowLeftIcon } from "@heroicons/react/outline";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux/es/exports";
+import { addCart } from "../../redux/action";
 import { NavLink, useParams } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -7,8 +9,13 @@ import ShoppingBag from "../../components/Shared/ShoppingBag";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const [detailsProduct, setDetailsProduct] = useState({});
+  const [product, setDetailsProduct] = useState({});
   const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  const addProduct = (product) => {
+    dispatch(addCart(product));
+  };
 
   useEffect(() => {
     fetch(`http://localhost:5000/products/${id}`)
@@ -19,7 +26,7 @@ const ProductDetails = () => {
       });
   }, [id]);
 
-  const { image, name, model, description, price } = detailsProduct;
+  const { image, name, model, description, price } = product;
 
   const Loading = () => {
     return (
@@ -92,7 +99,10 @@ const ProductDetails = () => {
             </div>
 
             <div className="btn-group mt-8">
-              <button className="border-2 border-black w-[200px] mr-2 py-2 text-base text-white font-[500] bg-black uppercase">
+              <button
+                onClick={() => addProduct(product)}
+                className="border-2 border-black w-[200px] mr-2 py-2 text-base text-white font-[500] bg-black uppercase"
+              >
                 Add To Bag
               </button>
               <button className="border-2 border-black w-[200px] py-2 text-base font-[500] uppercase ">
