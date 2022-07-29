@@ -5,9 +5,11 @@ import {
 } from "@heroicons/react/outline";
 import { HeartIcon } from "@heroicons/react/solid";
 import "./Products.css";
+import { useNavigate } from "react-router-dom";
 
 const SingleProducts = ({ item }) => {
-  const { name, price, model, image } = item;
+  const { name, price, model, image, _id } = item;
+  const navigate = useNavigate();
   return (
     <div className="bg-white overflow-hidden group single-col border rounded-lg px-6 py-4 cursor-pointer relative">
       <div className="flex justify-between items-center">
@@ -33,7 +35,10 @@ const SingleProducts = ({ item }) => {
           <h2 className="leading-[16px]">{name}</h2>
           <div className="flex items-center justify-between ">
             <h2 className="text-base">Price: ${price}</h2>
-            <button className="buy-btn relative flex text-sm items-center px-3 py-1 border-2 border-white rounded-lg text-white">
+            <button
+              onClick={() => navigate(`/products/${_id}`)}
+              className="buy-btn relative flex text-sm items-center px-3 py-1 border-2 border-white rounded-lg text-white"
+            >
               <span className="btn-icon z-10 bg-black absolute translate-y-[-50%] top-[50%] left-[-20px] border-2 p-2 rounded-full">
                 <ShoppingCartIcon className="w-4 h-4 text-white " />
               </span>
