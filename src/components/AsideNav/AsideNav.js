@@ -3,16 +3,30 @@ import { CubeIcon, HomeIcon, UserIcon } from "@heroicons/react/outline";
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./AsideNav.css";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 const AsideNav = () => {
+  const [user, loading, error] = useAuthState(auth);
   return (
     <aside className="w-[290px] bg-slate-900 h-screen sticky top-0 left-0 p-4">
-      <div className="flex gap-4 items-center pl-4">
-        <img
-          className="w-[50px] h-[50px] rounded-full border border-slate-200 object-cover"
-          src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-          alt="Icon"
-        />
-        <h2 className="text-lg text-white">Ridwan</h2>
+      <div className="flex gap-2 items-center pl-4">
+        {user?.photoURL ? (
+          <img
+            className="w-[40px] h-[40px] rounded-full border border-slate-200 object-cover"
+            src={user?.photoURL}
+            alt="Icon"
+          />
+        ) : (
+          <img
+            className="w-[40px] h-[40px] rounded-full border border-slate-200 object-cover"
+            src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+            alt="Icon"
+          />
+        )}
+
+        <h2 className="text-lg text-white">
+          {user ? user?.displayName : "Welcome"}
+        </h2>
       </div>
       <ul className="text-slate-300 mt-8 text-xl aside-nav">
         <NavLink

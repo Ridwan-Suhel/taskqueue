@@ -2,10 +2,13 @@ import React from "react";
 import GoogleSignIn from "./GoogleSignIn";
 import "./Login.css";
 import { useForm } from "react-hook-form";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import loaderImg from "../../images/loading.gif";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const {
@@ -18,22 +21,29 @@ const Signup = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
   const Loader = () => {
     return <img className="mx-auto w-6 h-6" src={loaderImg} alt="Loading..." />;
   };
 
   const ErrorMsg = () => {
-    if (error?.message.includes("auth/user-not-found")) {
-      return <p className="text-sm text-red-500 mt-2">Oops! user not found.</p>;
-    }
+    return <p className="text-sm text-red-500 mt-2">{error?.message}</p>;
   };
 
-  const onSubmit = (data) => {
+  const navigate = useNavigate();
+
+  const onSubmit = async (data) => {
     console.log(data);
-    createUserWithEmailAndPassword(data.email, data.password, data.name);
+    await createUserWithEmailAndPassword(data.email, data.password, data.name);
+    await updateProfile({ displayName: data.name });
 
     reset();
   };
+
+  if (user) {
+    navigate("/home");
+  }
 
   return (
     <div className="bg-roose-50">
@@ -86,9 +96,10 @@ const Signup = () => {
               type="submit"
               className="font-[500] text-white outline-none px-4 py-2 rounded-md border w-full bg-slate-900"
             >
-              {loading ? <Loader /> : "Sign Up"}
+              {loading || updating ? <Loader /> : "Sign Up"}
             </button>
-            {error && <ErrorMsg />}
+            {(error || updateError) && <ErrorMsg />}
+            {/* {updateError && <ErrorMsg />} */}
           </form>
         </div>
         <div className="text-center my-5">

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import loaderImg from "../../images/loading.gif";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -28,12 +28,18 @@ const Login = () => {
     }
   };
 
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
     console.log(data);
     signInWithEmailAndPassword(data.email, data.password);
 
     reset();
   };
+
+  if (user) {
+    navigate("/home");
+  }
 
   return (
     <div className="bg-roose-50">
