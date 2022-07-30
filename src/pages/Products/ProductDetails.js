@@ -11,10 +11,30 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [product, setDetailsProduct] = useState({});
   const [loading, setLoading] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+
+  // console.log(quantity);
 
   const dispatch = useDispatch();
+
   const addProduct = (product) => {
     dispatch(addCart(product));
+    setQuantity(quantity + 1);
+
+    fetch(`http://localhost:5000/products/cart/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        cartProduct: {
+          ...product,
+          quantity: quantity + 1,
+        },
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
   };
 
   useEffect(() => {

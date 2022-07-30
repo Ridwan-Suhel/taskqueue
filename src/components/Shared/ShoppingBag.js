@@ -1,9 +1,12 @@
 import { ShoppingBagIcon } from "@heroicons/react/outline";
 import React from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const ShoppingBag = () => {
   const state = useSelector((state) => state.handleCart);
+
+  // console.log(state);
 
   return (
     <div className="shopping-bag">
