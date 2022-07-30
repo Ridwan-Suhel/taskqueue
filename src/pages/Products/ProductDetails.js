@@ -84,9 +84,6 @@ const ProductDetails = () => {
           >
             <ArrowLeftIcon className="w-5 h-5 text-white" />
           </NavLink>
-          <div className="site-top">
-            <ShoppingBag />
-          </div>
         </div>
       </div>
       <div className="bg-slate-900 py-2 mb-3">

@@ -40,9 +40,6 @@ const Products = () => {
             Get all products from one destination for your daily basis work.
           </p>
         </div>
-        <div className="site-top">
-          <ShoppingBag />
-        </div>
       </div>
 
       <div className="product-wrapper grid lg:grid-cols-3 2xl:grid-cols-4 gap-2 pt-12">

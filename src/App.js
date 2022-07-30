@@ -6,6 +6,7 @@ import AsideNav from "./components/AsideNav/AsideNav";
 import AddTasks from "./pages/AddTasks/AddTasks";
 import Products from "./pages/Products/Products";
 import ProductDetails from "./pages/Products/ProductDetails";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <div className="flex">
         <AsideNav />
         <div className="w-full">
+          <Header />
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/home" element={<Home />}></Route>

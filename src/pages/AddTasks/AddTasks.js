@@ -30,7 +30,7 @@ const AddTasks = () => {
       <DemoHeader />
       <div className="px-4">
         <div className="wrapper mt-10">
-          <h2>Add Task</h2>
+          <h2 className="mb-2">Add Task</h2>
           <div className="">
             <form onSubmit={handleSubmit(onSubmit)}>
               {/* separate row  */}
