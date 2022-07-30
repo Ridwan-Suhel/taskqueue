@@ -2,6 +2,9 @@ import React from "react";
 import GoogleSignIn from "./GoogleSignIn";
 import "./Login.css";
 import { useForm } from "react-hook-form";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
+import loaderImg from "../../images/loading.gif";
 
 const Login = () => {
   const {
@@ -11,8 +14,16 @@ const Login = () => {
     reset,
   } = useForm();
 
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
+  const Loader = () => {
+    return <img className="mx-auto w-6 h-6" src={loaderImg} alt="Loading..." />;
+  };
+
   const onSubmit = (data) => {
     console.log(data);
+    signInWithEmailAndPassword(data.email, data.password);
 
     reset();
   };
@@ -36,7 +47,9 @@ const Login = () => {
                 className="outline-none px-4 py-2 rounded-md border w-full"
                 {...register("email", { required: true })}
               />
-              {errors.email && <p>Email is required</p>}
+              {errors.email && (
+                <p className="text-sm text-red-500 mt-2">Email is required</p>
+              )}
             </div>
 
             <div className="form-control mb-4">
@@ -45,14 +58,18 @@ const Login = () => {
                 className="outline-none px-4 py-2 rounded-md border w-full"
                 {...register("password", { required: true })}
               />
-              {errors.password && <p>Password is required</p>}
+              {errors.password && (
+                <p className="text-sm text-red-500 mt-2">
+                  Password is required
+                </p>
+              )}
             </div>
             <p className="mb-4 font-[500]">Having trouble in sign in?</p>
             <button
               type="submit"
               className="font-[500] text-white outline-none px-4 py-2 rounded-md border w-full bg-slate-900"
             >
-              Sign in
+              {loading ? <Loader /> : "Sign in"}
             </button>
           </form>
         </div>
