@@ -1,0 +1,20 @@
+.or-hr-line:before,
+.or-hr-line:after {
+  position: absolute;
+  content: "";
+  top: 50%;
+
+  transform: translateY(-50%);
+  width: 40px;
+  height: 1px;
+  margin-top: 1px;
+  margin-left: 15px;
+  margin-right: 15px;
+  background: rgb(20, 15, 15);
+}
+.or-hr-line:before {
+  right: 100%;
+}
+.or-hr-line:after {
+  left: 100%;
+}

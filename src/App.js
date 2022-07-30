@@ -7,6 +7,7 @@ import AddTasks from "./pages/AddTasks/AddTasks";
 import Products from "./pages/Products/Products";
 import ProductDetails from "./pages/Products/ProductDetails";
 import Header from "./components/Header/Header";
+import Login from "./pages/Login/Login";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/addtasks" element={<AddTasks />}></Route>
             <Route path="/products" element={<Products />}></Route>
             <Route path="/products/:id" element={<ProductDetails />}></Route>
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
       </div>

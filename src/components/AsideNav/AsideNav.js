@@ -1,5 +1,5 @@
 import { ClipboardListIcon, DocumentAddIcon } from "@heroicons/react/solid";
-import { CubeIcon, HomeIcon } from "@heroicons/react/outline";
+import { CubeIcon, HomeIcon, UserIcon } from "@heroicons/react/outline";
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./AsideNav.css";
@@ -52,6 +52,15 @@ const AsideNav = () => {
             <span>Products</span>
           </li>
         </NavLink>
+        {/* <NavLink
+          to="/login"
+          className="block transition  hover:text-white hover:bg-slate-800 py-2 pl-4 rounded"
+        >
+          <li className="flex items-center gap-2">
+            <UserIcon className="w-6 h-6" />
+            <span>Login</span>
+          </li>
+        </NavLink> */}
       </ul>
     </aside>
   );
