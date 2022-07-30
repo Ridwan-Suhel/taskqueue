@@ -2,12 +2,12 @@ import React from "react";
 import GoogleSignIn from "./GoogleSignIn";
 import "./Login.css";
 import { useForm } from "react-hook-form";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import loaderImg from "../../images/loading.gif";
 import { NavLink } from "react-router-dom";
 
-const Login = () => {
+const Signup = () => {
   const {
     register,
     formState: { errors },
@@ -15,8 +15,8 @@ const Login = () => {
     reset,
   } = useForm();
 
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
 
   const Loader = () => {
     return <img className="mx-auto w-6 h-6" src={loaderImg} alt="Loading..." />;
@@ -30,7 +30,7 @@ const Login = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    signInWithEmailAndPassword(data.email, data.password);
+    createUserWithEmailAndPassword(data.email, data.password, data.name);
 
     reset();
   };
@@ -41,13 +41,23 @@ const Login = () => {
         <div>
           <div className="title text-center mb-8">
             <h2 className="text-2xl font-medium text-slate-900 mb-2">
-              User Login
+              Sign Up
             </h2>
             <h2 className="text-xl leading-[25px] text-slate-900">
-              Hey, Enter your details to get sign in <br /> to your account
+              Hey, Enter your details to create <br /> an account
             </h2>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-control mb-4">
+              <input
+                placeholder="Enter Name"
+                className="outline-none px-4 py-2 rounded-md border w-full"
+                {...register("name", { required: true })}
+              />
+              {errors.name && (
+                <p className="text-sm text-red-500 mt-2">Name is required</p>
+              )}
+            </div>
             <div className="form-control mb-4">
               <input
                 placeholder="Enter Email"
@@ -71,12 +81,12 @@ const Login = () => {
                 </p>
               )}
             </div>
-            <p className="mb-4 font-[500]">Having trouble in sign in?</p>
+            {/* <p className="mb-4 font-[500]">Having trouble in sign in?</p> */}
             <button
               type="submit"
               className="font-[500] text-white outline-none px-4 py-2 rounded-md border w-full bg-slate-900"
             >
-              {loading ? <Loader /> : "Sign in"}
+              {loading ? <Loader /> : "Sign Up"}
             </button>
             {error && <ErrorMsg />}
           </form>
@@ -88,9 +98,9 @@ const Login = () => {
         <GoogleSignIn />
 
         <p className="mb-4 text-center mt-5">
-          Don't have an account?{" "}
-          <NavLink to="/signup" className="font-[500] hover:text-slate-700">
-            Request Now.
+          Already have an account?{" "}
+          <NavLink to="/login" className="font-[500] hover:text-slate-700">
+            Signin Now.
           </NavLink>{" "}
         </p>
       </div>
@@ -98,4 +108,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
