@@ -7,7 +7,13 @@ const GoogleSignIn = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
   const Loader = () => {
-    return <img className="mx-auto w-6 h-6" src={loaderImg} alt="Loading..." />;
+    return (
+      <img
+        className="mx-auto w-6 h-6 object-cover"
+        src={loaderImg}
+        alt="Loading..."
+      />
+    );
   };
 
   const ErrorMsg = () => {

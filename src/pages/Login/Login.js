@@ -5,9 +5,13 @@ import { useForm } from "react-hook-form";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import loaderImg from "../../images/loading.gif";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Login = () => {
+  let navigate = useNavigate();
+  let location = useLocation();
+
   const {
     register,
     formState: { errors },
@@ -19,7 +23,13 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
 
   const Loader = () => {
-    return <img className="mx-auto w-6 h-6" src={loaderImg} alt="Loading..." />;
+    return (
+      <img
+        className="mx-auto w-6 h-6 object-cover"
+        src={loaderImg}
+        alt="Loading..."
+      />
+    );
   };
 
   const ErrorMsg = () => {
@@ -28,8 +38,6 @@ const Login = () => {
     }
   };
 
-  const navigate = useNavigate();
-
   const onSubmit = (data) => {
     console.log(data);
     signInWithEmailAndPassword(data.email, data.password);
@@ -37,9 +45,13 @@ const Login = () => {
     reset();
   };
 
-  if (user) {
-    navigate("/home");
-  }
+  let from = location.state?.from?.pathname || "/";
+
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+  }, [navigate, location, from, user]);
 
   return (
     <div className="bg-roose-50">

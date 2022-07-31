@@ -9,7 +9,7 @@ import ShoppingBag from "../Shared/ShoppingBag";
 const Header = () => {
   const [user, loading, error] = useAuthState(auth);
 
-  console.log(user);
+
 
   const logout = () => {
     signOut(auth);
