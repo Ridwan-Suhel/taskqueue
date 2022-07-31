@@ -64,6 +64,7 @@ const Signup = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control mb-4">
               <input
+                type="text"
                 placeholder="Enter Name"
                 className="outline-none px-4 py-2 rounded-md border w-full"
                 {...register("name", { required: true })}
@@ -74,6 +75,7 @@ const Signup = () => {
             </div>
             <div className="form-control mb-4">
               <input
+                type="email"
                 placeholder="Enter Email"
                 className="outline-none px-4 py-2 rounded-md border w-full"
                 {...register("email", { required: true })}
@@ -85,6 +87,7 @@ const Signup = () => {
 
             <div className="form-control mb-4">
               <input
+                type="password"
                 placeholder="Passcode"
                 className="outline-none px-4 py-2 rounded-md border w-full"
                 {...register("password", { required: true })}

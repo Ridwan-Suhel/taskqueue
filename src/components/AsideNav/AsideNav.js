@@ -1,12 +1,12 @@
 import { ClipboardListIcon, DocumentAddIcon } from "@heroicons/react/solid";
-import { CubeIcon, HomeIcon, UserIcon } from "@heroicons/react/outline";
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { CubeIcon, HomeIcon } from "@heroicons/react/outline";
+import { NavLink } from "react-router-dom";
 import "./AsideNav.css";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 const AsideNav = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
+
   return (
     <aside className="w-[290px] bg-slate-900 h-screen sticky top-0 left-0 p-4">
       <div className="flex gap-2 items-center pl-4">
@@ -25,7 +25,7 @@ const AsideNav = () => {
         )}
 
         <h2 className="text-lg text-white">
-          {user ? user?.displayName : "Welcome"}
+          {user ? user.displayName : "Welcome"}
         </h2>
       </div>
       <ul className="text-slate-300 mt-8 text-xl aside-nav">

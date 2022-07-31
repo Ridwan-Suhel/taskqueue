@@ -62,6 +62,7 @@ const Login = () => {
             <div className="form-control mb-4">
               <input
                 placeholder="Enter Email"
+                type="email"
                 className="outline-none px-4 py-2 rounded-md border w-full"
                 {...register("email", { required: true })}
               />
@@ -73,6 +74,7 @@ const Login = () => {
             <div className="form-control mb-4">
               <input
                 placeholder="Passcode"
+                type="password"
                 className="outline-none px-4 py-2 rounded-md border w-full"
                 {...register("password", { required: true })}
               />

@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import DemoHeader from "../../components/DemoHeader/DemoHeader";
 import { useForm } from "react-hook-form";
-import { DocumentAddIcon, PlusIcon, PlusSmIcon } from "@heroicons/react/solid";
+import { PlusIcon } from "@heroicons/react/solid";
 import DatePick from "./DatePick";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 const AddTasks = () => {
+  const [user] = useAuthState(auth);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
+  const date = new Date();
   const today =
+    date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+
+  const userSelectedDate =
     selectedDate.getDate() +
     "-" +
     (selectedDate.getMonth() + 1) +
@@ -19,11 +26,33 @@ const AddTasks = () => {
     reset,
   } = useForm();
 
+  const userImg = user?.photoURL;
+  const userEmail = user?.email;
+
   const onSubmit = (data) => {
-    console.log(data);
-    console.log(today);
+    const todosInfo = {
+      taskfor: data.taskfor,
+      name: data.name,
+      title: data.title,
+      description: data.description,
+      todosEndDate: userSelectedDate,
+      todosCreateDate: today,
+      userPhoto: userImg,
+      email: userEmail,
+    };
+
+    fetch("http://localhost:5000/todos", {
+      method: "POST",
+      body: JSON.stringify(todosInfo),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((result) => console.log(result));
 
     reset();
+    setSelectedDate(new Date());
   };
   return (
     <div>
@@ -39,25 +68,29 @@ const AddTasks = () => {
                   <select
                     placeholder="Project For.."
                     className="border-slate-500  w-full border px-3 py-2"
-                    {...register("project", { required: true })}
+                    {...register("taskfor", { required: true })}
                   >
-                    <option value="">Project For</option>
+                    <option value="">Task For</option>
                     <option value="home">Home</option>
                     <option value="office">Office</option>
-                    <option value="study">Study</option>
                     <option value="personal">Personal</option>
+                    <option value="school">School</option>
+                    <option value="study">Study</option>
                   </select>
-                  {errors.project?.type === "required" &&
+                  {errors.taskfor?.type === "required" &&
                     "Project name is required"}
                 </div>
 
                 <div className="form-control w-full">
                   <input
+                    type="text"
+                    value={user.displayName}
+                    readOnly
                     placeholder="Your Name"
-                    className="border-slate-500 w-full border px-3 py-2"
-                    {...register("name", { required: true })}
+                    className="border-slate-500 w-full border px-3 py-2 bg-blue-50 outline-none"
+                    {...register("name")}
                   />
-                  {errors.name && <p>Name is required</p>}
+                  {/* {errors.name && <p>Name is required</p>} */}
                 </div>
               </div>
               {/* separate row  */}
@@ -65,6 +98,7 @@ const AddTasks = () => {
               <div className="flex gap-2 items-center mb-2">
                 <div className="form-control w-full">
                   <input
+                    type="text"
                     className="border-slate-500 w-full border px-3 py-2"
                     placeholder="Project Title"
                     {...register("title", { required: true })}
@@ -91,7 +125,10 @@ const AddTasks = () => {
               <div className="flex justify-end gap-5">
                 <div className="form-control">
                   <button
-                    onClick={() => reset()}
+                    onClick={() => {
+                      reset();
+                      setSelectedDate(new Date());
+                    }}
                     className="font-medium transition-all hover:bg-rose-600 hover:text-white border-slate-500 w-[150px] text-slate-900 cursor-pointer border px-3 py-2"
                     type="button"
                   >
