@@ -1,5 +1,6 @@
 import React from "react";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import useAuthUser from "../../components/Hooks/useAuthUserHook";
 import auth from "../../firebase.init";
 import loaderImg from "../../images/loading.gif";
 
@@ -19,6 +20,9 @@ const GoogleSignIn = () => {
   const ErrorMsg = () => {
     return <p className="text-sm text-red-500 mt-2">{error?.message}</p>;
   };
+
+  // used custom hook for navigate if user true - [useAuthuserHook]
+  useAuthUser(user);
 
   return (
     <div>

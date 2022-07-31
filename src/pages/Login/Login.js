@@ -5,13 +5,11 @@ import { useForm } from "react-hook-form";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import loaderImg from "../../images/loading.gif";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { NavLink } from "react-router-dom";
+
+import useAuthUser from "../../components/Hooks/useAuthUserHook";
 
 const Login = () => {
-  let navigate = useNavigate();
-  let location = useLocation();
-
   const {
     register,
     formState: { errors },
@@ -45,13 +43,8 @@ const Login = () => {
     reset();
   };
 
-  let from = location.state?.from?.pathname || "/";
-
-  useEffect(() => {
-    if (user) {
-      navigate(from, { replace: true });
-    }
-  }, [navigate, location, from, user]);
+  // used custom hook for navigate if user true/authenticated - [useAuthuserHook]
+  useAuthUser(user);
 
   return (
     <div className="bg-roose-50">

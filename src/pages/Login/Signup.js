@@ -8,7 +8,8 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import loaderImg from "../../images/loading.gif";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import useAuthUser from "../../components/Hooks/useAuthUserHook";
 
 const Signup = () => {
   const {
@@ -37,8 +38,6 @@ const Signup = () => {
     return <p className="text-sm text-red-500 mt-2">{error?.message}</p>;
   };
 
-  const navigate = useNavigate();
-
   const onSubmit = async (data) => {
     console.log(data);
     await createUserWithEmailAndPassword(data.email, data.password, data.name);
@@ -47,9 +46,8 @@ const Signup = () => {
     reset();
   };
 
-  if (user) {
-    navigate("/home");
-  }
+  // used custom hook for navigate if user true - [useAuthuserHook]
+  useAuthUser(user);
 
   return (
     <div className="bg-roose-50">
