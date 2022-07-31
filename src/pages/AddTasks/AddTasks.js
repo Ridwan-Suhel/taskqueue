@@ -5,6 +5,7 @@ import { PlusIcon } from "@heroicons/react/solid";
 import DatePick from "./DatePick";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import Swal from "sweetalert2";
 const AddTasks = () => {
   const [user] = useAuthState(auth);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -49,7 +50,11 @@ const AddTasks = () => {
       },
     })
       .then((response) => response.json())
-      .then((result) => console.log(result));
+      .then((result) => {
+        if (result) {
+          Swal.fire("Good job!", "You clicked the button!", "success");
+        }
+      });
 
     reset();
     setSelectedDate(new Date());
@@ -57,6 +62,7 @@ const AddTasks = () => {
   return (
     <div>
       <DemoHeader />
+
       <div className="px-4">
         <div className="wrapper mt-10">
           <h2 className="mb-2">Add Task</h2>
