@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { HeartIcon } from "@heroicons/react/outline";
+import { HeartIcon, TrashIcon } from "@heroicons/react/outline";
 import { InformationCircleIcon } from "@heroicons/react/solid";
 import TaskDetails from "./TaskDetails";
-const SingleTask = ({ todo }) => {
+const SingleTask = ({ todo, isOdd }) => {
   const [handleClick, setHandleClick] = useState(false);
 
   const {
@@ -16,9 +16,14 @@ const SingleTask = ({ todo }) => {
     _id,
     taskfor,
   } = todo;
+
   return (
     <div>
-      <div className="relative cursor-pointer flex justify-between gap-4 border border-slate-400 bg-gray-300 mb-2 px-4 rounded">
+      <div
+        className={`${
+          isOdd ? "bg-red-50" : "bg-green-50"
+        } relative cursor-pointer flex justify-between gap-4 border border-slate-400 mb-2 px-4 rounded`}
+      >
         <div className="flex gap-4 w-full">
           <div className="flex gap-4 mt-1 w-[80px]  py-3">
             <input
@@ -36,8 +41,11 @@ const SingleTask = ({ todo }) => {
             }}
             className="group relative w-full py-3"
           >
-            <h2 className="text-lg">{title}</h2>
-            <div className="pointer-events-none  z-[10] opacity-0  group-hover:opacity-90 group-hover:visible transition-all duration-500 rounded-lg arrow-content absolute translate-y-[-40%] bottom-[100%] left-[0px] bg-blue-500 border border-blue-600">
+            {/* <h2 className="text-lg">{title.toUpperCase().slice(0, 1)}</h2> */}
+            <h2 className="text-lg">
+              {title.charAt(0).toUpperCase() + title.slice(1, 50)}
+            </h2>
+            <div className="pointer-events-none  z-[10] opacity-0  group-hover:opacity-90 group-hover:visible transition-all duration-500 rounded-lg arrow-content absolute  bottom-[100%] left-[0px] bg-blue-500 border border-blue-600">
               <p className="text-sm text-white py-2 px-4">
                 Click for view details
               </p>
@@ -49,7 +57,9 @@ const SingleTask = ({ todo }) => {
         <div className="w-[150px]  py-3">
           <div className="flex gap-2 items-center justify-end">
             <p className="text-lg text-slate-900 font-medium">{todosEndDate}</p>
-            <InformationCircleIcon className="h-7 w-7 text-gray-500 mt-1 cursor-pointer" />
+            <button title="Delete Item" className="group">
+              <TrashIcon className="h-7 w-7 text-red-500 mt-1 transition-all duration-500 group-hover:text-red-400" />
+            </button>
           </div>
         </div>
       </div>

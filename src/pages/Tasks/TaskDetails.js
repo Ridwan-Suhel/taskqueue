@@ -2,8 +2,6 @@ import { XIcon } from "@heroicons/react/solid";
 import React from "react";
 
 const TaskDetails = ({ todo, handleClick, setHandleClick }) => {
-  console.log(handleClick);
-
   const {
     description,
     email,
@@ -25,14 +23,22 @@ const TaskDetails = ({ todo, handleClick, setHandleClick }) => {
         <div>
           <div>
             <h2 className="text-xl font-[500]">
-              Your Task Title: <span className="font-[400]">{title}</span>
+              Your Task Title:{" "}
+              <span className="font-[400]">
+                {title.charAt(0).toUpperCase() + title.slice(1, 50)}
+              </span>
             </h2>
             <h2 className="text-xl font-[500]">
-              Task For: <span className="font-[400]">{taskfor}</span>
+              Task For:{" "}
+              <span className="font-[400]">
+                {taskfor.charAt(0).toUpperCase() + taskfor.slice(1)}
+              </span>
             </h2>
             <h2 className="text-xl font-[500] mt-4">
               Task Description:{" "}
-              <span className="font-[400]">{description}</span>
+              <span className="font-[400]">
+                {description.charAt(0).toUpperCase() + description.slice(1)}
+              </span>
             </h2>
           </div>
           <div className="flex gap-3 items-center mt-4">

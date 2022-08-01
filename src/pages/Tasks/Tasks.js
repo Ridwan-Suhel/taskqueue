@@ -58,7 +58,9 @@ const Tasks = () => {
           {isLoading ? (
             <Loading />
           ) : (
-            data.map((todo) => <SingleTask todo={todo} key={todo._id} />)
+            data.map((todo, i) => (
+              <SingleTask todo={todo} key={todo._id} isOdd={Boolean(i % 2)} />
+            ))
           )}
         </div>
       </div>
