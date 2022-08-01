@@ -9,6 +9,8 @@ import Swal from "sweetalert2";
 const AddTasks = () => {
   const [user] = useAuthState(auth);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  // const [titleData, setTitleData] = useState(null);
+  // const [descData, setDescData] = useState(null);
 
   const date = new Date();
   const today =
@@ -42,6 +44,16 @@ const AddTasks = () => {
       email: userEmail,
     };
 
+    // if (data.title === " " || data.description === " ") {
+    //   setTitleData(true);
+    //   setDescData(true);
+    // } else {
+    //   setTitleData(null);
+    //   setDescData(null);
+    // }
+
+    // console.log(todosInfo);
+
     fetch("http://localhost:5000/todos", {
       method: "POST",
       body: JSON.stringify(todosInfo),
@@ -52,7 +64,11 @@ const AddTasks = () => {
       .then((response) => response.json())
       .then((result) => {
         if (result) {
-          Swal.fire("Good job!", "You clicked the button!", "success");
+          Swal.fire(
+            "Welldone!",
+            "You successfully added a todo task!",
+            "success"
+          );
         }
       });
 
@@ -83,8 +99,11 @@ const AddTasks = () => {
                     <option value="school">School</option>
                     <option value="study">Study</option>
                   </select>
-                  {errors.taskfor?.type === "required" &&
-                    "Project name is required"}
+                  {errors.taskfor?.type === "required" && (
+                    <p className="text-sm text-red-600">
+                      Task name is required
+                    </p>
+                  )}
                 </div>
 
                 <div className="form-control w-full">
@@ -96,20 +115,21 @@ const AddTasks = () => {
                     className="border-slate-500 w-full border px-3 py-2 bg-blue-50 outline-none"
                     {...register("name")}
                   />
-                  {/* {errors.name && <p>Name is required</p>} */}
                 </div>
               </div>
               {/* separate row  */}
 
-              <div className="flex gap-2 items-center mb-2">
+              <div className="flex gap-2 mb-2">
                 <div className="form-control w-full">
                   <input
                     type="text"
                     className="border-slate-500 w-full border px-3 py-2"
-                    placeholder="Project Title"
+                    placeholder="Task Title"
                     {...register("title", { required: true })}
                   />
-                  {errors.title && <p>Title is required</p>}
+                  {errors.title && (
+                    <p className="text-sm text-red-600">Title is required</p>
+                  )}
                 </div>
                 <div className="form-control w-full">
                   <DatePick
@@ -125,7 +145,11 @@ const AddTasks = () => {
                   placeholder="Decribe Your Tasks"
                   {...register("description", { required: true })}
                 ></textarea>
-                {errors.description && <p>Description is required</p>}
+                {errors.description && (
+                  <p className="text-sm text-red-600">
+                    Description is required
+                  </p>
+                )}
               </div>
 
               <div className="flex justify-end gap-5">
