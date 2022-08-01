@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DemoHeader from "../../components/DemoHeader/DemoHeader";
 import { InformationCircleIcon } from "@heroicons/react/solid";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -6,15 +6,25 @@ import { useQuery } from "@tanstack/react-query";
 import auth from "../../firebase.init";
 import SingleTask from "./SingleTask";
 import Skeleton from "react-loading-skeleton";
+import { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 const Tasks = () => {
   const [user, userLoading] = useAuthState(auth);
-  // const [todos, setTodos] = useState([]);
+  const [todoErr, setTodoErr] = useState(false);
 
   const url = `http://localhost:5000/todos/${user?.email}`;
 
   const { isLoading, error, data } = useQuery(["repoData"], () =>
     fetch(url).then((res) => res.json())
   );
+
+  useEffect(() => {
+    if (data?.length === 0) {
+      setTodoErr(true);
+    } else {
+      setTodoErr(false);
+    }
+  }, [data?.length]);
 
   if (error)
     return (
@@ -24,6 +34,8 @@ const Tasks = () => {
         </p>
       </div>
     );
+
+  console.log(data);
 
   const Loading = () => {
     return (
@@ -54,6 +66,17 @@ const Tasks = () => {
             </div>
           </div>
           {/* main tasks */}
+          {todoErr && (
+            <div className="flex items-center justify-between bg-red-300 py-3 px-4 text-lg font-[500] rounded-md">
+              <p>You haven't added any todo task.</p>
+              <NavLink
+                to="/addtasks"
+                className="text-white bg-slate-900 py-1 px-4 text-sm rounded-sm"
+              >
+                Add Todo
+              </NavLink>
+            </div>
+          )}
 
           {isLoading ? (
             <Loading />

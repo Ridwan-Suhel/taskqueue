@@ -25,7 +25,7 @@ const AsideNav = () => {
         )}
 
         <h2 className="text-lg text-white">
-          {user ? user.displayName : "Welcome"}
+          {user?.displayName ? user?.displayName : "Welcome"}
         </h2>
       </div>
       <ul className="text-slate-300 mt-8 text-xl aside-nav">

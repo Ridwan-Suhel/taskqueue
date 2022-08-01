@@ -33,6 +33,10 @@ const Login = () => {
   const ErrorMsg = () => {
     if (error?.message.includes("auth/user-not-found")) {
       return <p className="text-sm text-red-500 mt-2">Oops! user not found.</p>;
+    } else if (error?.message.includes("auth/wrong-password")) {
+      return <p className="text-sm text-red-500 mt-2">🚫 Wrong password.</p>;
+    } else if (error) {
+      return <p className="text-sm text-red-500 mt-2">{error?.message}</p>;
     }
   };
 
