@@ -14,7 +14,7 @@ const Tasks = () => {
 
   const url = `http://localhost:5000/todos/${user?.email}`;
 
-  const { isLoading, error, data } = useQuery(["repoData"], () =>
+  const { isLoading, error, data, refetch } = useQuery(["repoData"], () =>
     fetch(url).then((res) => res.json())
   );
 
@@ -82,7 +82,12 @@ const Tasks = () => {
             <Loading />
           ) : (
             data.map((todo, i) => (
-              <SingleTask todo={todo} key={todo._id} isOdd={Boolean(i % 2)} />
+              <SingleTask
+                todo={todo}
+                refetch={refetch}
+                key={todo._id}
+                isOdd={Boolean(i % 2)}
+              />
             ))
           )}
         </div>

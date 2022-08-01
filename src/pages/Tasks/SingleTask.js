@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { HeartIcon, TrashIcon } from "@heroicons/react/outline";
 import { InformationCircleIcon } from "@heroicons/react/solid";
 import TaskDetails from "./TaskDetails";
-const SingleTask = ({ todo, isOdd }) => {
+
+import ConfirmModal from "./ConfirmModal";
+const SingleTask = ({ todo, isOdd, refetch }) => {
   const [handleClick, setHandleClick] = useState(false);
+  const [handleClickModal, setHandleClickModal] = useState(false);
 
   const {
     description,
@@ -57,7 +60,13 @@ const SingleTask = ({ todo, isOdd }) => {
         <div className="w-[150px]  py-3">
           <div className="flex gap-2 items-center justify-end">
             <p className="text-lg text-slate-900 font-medium">{todosEndDate}</p>
-            <button title="Delete Item" className="group">
+            <button
+              onClick={() => {
+                setHandleClickModal(!handleClickModal);
+              }}
+              title="Delete Item"
+              className="group"
+            >
               <TrashIcon className="h-7 w-7 text-red-500 mt-1 transition-all duration-500 group-hover:text-red-400" />
             </button>
           </div>
@@ -67,6 +76,12 @@ const SingleTask = ({ todo, isOdd }) => {
         todo={todo}
         handleClick={handleClick}
         setHandleClick={setHandleClick}
+      />
+      <ConfirmModal
+        todo={todo}
+        refetch={refetch}
+        handleClickModal={handleClickModal}
+        setHandleClickModal={setHandleClickModal}
       />
     </div>
   );
