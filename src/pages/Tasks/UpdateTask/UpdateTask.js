@@ -83,6 +83,16 @@ const UpdateTask = () => {
     setSelectedDate(new Date());
   };
 
+  //   geting specific task data for preview, which data is updating
+  const url = `http://localhost:5000/todo/${id}`;
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setTaskData(data);
+        console.log(data);
+      });
+  }, [url]);
   return (
     <div>
       <DemoHeader />
