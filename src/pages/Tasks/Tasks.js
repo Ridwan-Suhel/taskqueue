@@ -35,8 +35,6 @@ const Tasks = () => {
       </div>
     );
 
-  console.log(data);
-
   const Loading = () => {
     return (
       <>
@@ -46,9 +44,6 @@ const Tasks = () => {
       </>
     );
   };
-
-  console.log(url);
-  console.log(data);
 
   return (
     <div>

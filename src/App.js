@@ -10,6 +10,7 @@ import Header from "./components/Header/Header";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Login/Signup";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
+import UpdateTask from "./pages/Tasks/UpdateTask/UpdateTask";
 
 function App() {
   return (
@@ -30,6 +31,15 @@ function App() {
                 </RequireAuth>
               }
             ></Route>
+
+            <Route
+              path="/tasks/update/:id"
+              element={
+                <RequireAuth>
+                  <UpdateTask />
+                </RequireAuth>
+              }
+            />
 
             <Route path="/products" element={<Products />}></Route>
 

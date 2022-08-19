@@ -1,6 +1,5 @@
 import { XIcon } from "@heroicons/react/solid";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ConfirmModal = ({
@@ -9,7 +8,6 @@ const ConfirmModal = ({
   todo,
   refetch,
 }) => {
-  const navigate = useNavigate();
   const { _id, title } = todo;
 
   const handleDelete = (id) => {

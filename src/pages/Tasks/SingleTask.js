@@ -1,24 +1,18 @@
 import React, { useState } from "react";
-import { HeartIcon, TrashIcon } from "@heroicons/react/outline";
+import { HeartIcon, PencilAltIcon, TrashIcon } from "@heroicons/react/outline";
 import { InformationCircleIcon } from "@heroicons/react/solid";
 import TaskDetails from "./TaskDetails";
 
 import ConfirmModal from "./ConfirmModal";
+import { useNavigate } from "react-router-dom";
 const SingleTask = ({ todo, isOdd, refetch }) => {
+  // const params = useParams()
   const [handleClick, setHandleClick] = useState(false);
   const [handleClickModal, setHandleClickModal] = useState(false);
 
-  const {
-    description,
-    email,
-    name,
-    title,
-    userPhoto,
-    todosCreateDate,
-    todosEndDate,
-    _id,
-    taskfor,
-  } = todo;
+  const { title, todosEndDate, _id } = todo;
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -57,9 +51,19 @@ const SingleTask = ({ todo, isOdd, refetch }) => {
           </div>
         </div>
         {/* right side  */}
-        <div className="w-[150px]  py-3">
+        <div className="w-[190px]  py-3">
           <div className="flex gap-2 items-center justify-end">
             <p className="text-lg text-slate-900 font-medium">{todosEndDate}</p>
+            <button
+              onClick={() => {
+                navigate(`/tasks/update/${_id}`);
+              }}
+              title="Edit Item"
+              className="group"
+            >
+              <PencilAltIcon className="h-7 w-7 text-base-500 mt-1 transition-all duration-500 group-hover:text-blue-600" />
+            </button>
+
             <button
               onClick={() => {
                 setHandleClickModal(!handleClickModal);
